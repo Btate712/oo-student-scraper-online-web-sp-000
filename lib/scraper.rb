@@ -52,7 +52,8 @@ class Scraper
     # scrape and store profile quote
     student_hash[:profile_quote] = doc.css(".profile-quote").text
     # scrape and store bio
-    binding.pry
+    student_hash[:bio] = doc.css(".content-holder .description-holder p").text
+    student_hash
   end
 
 
