@@ -18,14 +18,26 @@ class Scraper
     students_array
   end
 
+  # scrape_profile_page scrapes social media accounts (twitter, linkedin, github,
+  # and blog), profile quote, and bio and returns a hash in the form of:
+  # => {:twitter=>"http://twitter.com/flatironschool",
+  #   :linkedin=>"https://www.linkedin.com/in/flatironschool",
+  #   :github=>"https://github.com/learn-co,
+  #   :blog=>"http://flatironschool.com",
+  #   :profile_quote=>"\"Forget safety. Live where you fear to live. Destroy your 
+  #    reputation. Be notorious.\" - Rumi",
+  #   :bio=> "I'm a school"
+  #  }
   def self.scrape_profile_page(profile_url)
     doc = Nokogiri::HTML(open(profile_url))
     socials = doc.css(".social-icon-container")
     sites = []
     student_hash = {}
+    # scrape social media URLs into sites array
     socials.css("a").each do |site|
       sites << site['href']
     end
+    # pull social media sites into hash
     sites.each do |site|
       if site.include?("linkedin")
         student_hash[:linkedin] = site
@@ -37,7 +49,9 @@ class Scraper
         student_hash[:blog] = site
       end
     end
+    # scrape and store profile quote 
     student_hash[:profile_quote] = doc.css(".profile-quote").text
+    # scrape and store bio
     binding.pry
   end
 
