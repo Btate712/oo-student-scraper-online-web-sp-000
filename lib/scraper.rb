@@ -24,7 +24,7 @@ class Scraper
   #   :linkedin=>"https://www.linkedin.com/in/flatironschool",
   #   :github=>"https://github.com/learn-co,
   #   :blog=>"http://flatironschool.com",
-  #   :profile_quote=>"\"Forget safety. Live where you fear to live. Destroy your 
+  #   :profile_quote=>"\"Forget safety. Live where you fear to live. Destroy your
   #    reputation. Be notorious.\" - Rumi",
   #   :bio=> "I'm a school"
   #  }
@@ -49,7 +49,7 @@ class Scraper
         student_hash[:blog] = site
       end
     end
-    # scrape and store profile quote 
+    # scrape and store profile quote
     student_hash[:profile_quote] = doc.css(".profile-quote").text
     # scrape and store bio
     binding.pry
